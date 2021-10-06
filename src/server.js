@@ -14,4 +14,4 @@ app.get('/test',(req,res)=>{
 
 app.use("/products",productRouters)
 
-export default app
+export default app  
