@@ -1,10 +1,9 @@
 import express from 'express'
-import { Error } from 'mongoose'
 import productModel from './model.js'
 
-const productRouter = express.Router()
+const productRouters = express.Router()
 
-productRouter.post('/',async(req,res,)=>{
+productRouters.post('/',async(req,res,)=>{
     try {
         const newProduct = new productModel(req.body)
         await newProduct.save()
@@ -14,7 +13,7 @@ productRouter.post('/',async(req,res,)=>{
     }
 })
 
-productRouter.get('/:id',async(req,res)=>{
+productRouters.get('/:id',async(req,res)=>{
     try {
         const product = await productModel.findById(req.params.id)
         res.status(200).send(product)
@@ -23,7 +22,7 @@ productRouter.get('/:id',async(req,res)=>{
     }
 })
 
-productRouter.put("/:id",async(req,res)=>{
+productRouters.put("/:id",async(req,res)=>{
     try {
        const updateProduct = await productModel.findByIdAndUpdate(req.params.id,req.body,{new:true})
        res.status(200).send(updateProduct) 
@@ -32,7 +31,7 @@ productRouter.put("/:id",async(req,res)=>{
     }
 })
 
-productsRouter.delete('/:id',async(req,res)=>{
+productRouters.delete('/:id',async(req,res)=>{
     try {
         const deleteProduct = await ProductModel.findByIdAndDelete(req.params.id)
         res.status(204).send('deleted')
@@ -41,4 +40,4 @@ productsRouter.delete('/:id',async(req,res)=>{
     }
 })
 
-export default productsRouter
+export default productRouters
